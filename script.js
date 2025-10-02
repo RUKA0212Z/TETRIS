@@ -229,14 +229,13 @@ function adjustLayout() {
 
 // 모바일 버튼 위치: 캔버스 바로 아래 중앙, 가로 배치
 if(isMobile){
-    mobileControls.style.display = 'flex';
     mobileControls.style.position = 'absolute';
-    mobileControls.style.flexDirection = 'row'; // 가로 배치
-    mobileControls.style.alignItems = 'center';
-    mobileControls.style.justifyContent = 'center';
-    mobileControls.style.left = (canvas.offsetLeft + canvas.offsetWidth/2) + "px";
-    mobileControls.style.top = (canvas.offsetTop + canvas.offsetHeight + 10) + "px"; // 캔버스 바로 아래
-    mobileControls.style.transform = 'translateX(-50%)';
+mobileControls.style.left = (canvas.offsetLeft + canvas.offsetWidth/2) + 'px';
+mobileControls.style.top = (canvas.offsetTop + canvas.offsetHeight + 10) + 'px'; // 캔버스 바로 아래
+mobileControls.style.transform = 'translateX(-50%)';
+mobileControls.style.display = 'flex';
+mobileControls.style.flexDirection = 'row'; // 가로 배치
+mobileControls.style.gap = '12px';
 
     // 버튼 크기
     const btns = mobileControls.querySelectorAll('button');
