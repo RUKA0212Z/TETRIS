@@ -227,14 +227,17 @@ function adjustLayout() {
     nextCanvas.style.width = (120 * scale) + "px";
     nextCanvas.style.height = (120 * scale) + "px";
 
-    // 모바일 버튼 위치: 캔버스 바로 아래 중앙
+    // 모바일 버튼 위치: 캔버스 오른쪽 옆 중앙
+if(isMobile){
     mobileControls.style.display = 'flex';
     mobileControls.style.position = 'absolute';
     mobileControls.style.flexDirection = 'column';
     mobileControls.style.alignItems = 'center';
-    mobileControls.style.left = (canvasRect.left + canvasRect.width / 2) + "px";
-    mobileControls.style.top = (canvasRect.bottom + 10) + "px"; // 캔버스 바로 아래
-    mobileControls.style.transform = 'translateX(-50%)';
+    // 캔버스 오른쪽 옆으로 이동
+    mobileControls.style.left = (canvas.offsetLeft + canvas.offsetWidth + 10) + "px";
+    mobileControls.style.top = canvas.offsetTop + "px"; // 캔버스 상단 맞춤
+    mobileControls.style.transform = 'none'; // X축 중앙 이동 제거
+}
 
     // 버튼 크기
     const btns = mobileControls.querySelectorAll('button');
