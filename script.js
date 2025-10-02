@@ -206,10 +206,10 @@ bindControl("rotateBtn", () => {
 });
 
 // ====================== 반응형 캔버스 & 모바일 처리 ======================
+// ====================== 반응형 캔버스 & 모바일 처리 ======================
 function adjustLayout() {
     const isMobile = window.innerWidth <= 768;
     const mobileControls = document.getElementById('mobile-controls');
-    const restartBtn = document.getElementById('restartBtn');
 
     // 캔버스 최대 너비
     const maxWidth = isMobile ? window.innerWidth * 0.9 : 400;
@@ -220,9 +220,10 @@ function adjustLayout() {
     canvas.style.height = (ROW * SQ * scale) + "px";
 
     // Next 블록 위치: 캔버스 오른쪽 상단
+    const canvasRect = canvas.getBoundingClientRect();
     nextCanvas.style.position = "absolute";
-    nextCanvas.style.top = canvas.offsetTop + "px";
-    nextCanvas.style.left = (canvas.offsetLeft + canvas.offsetWidth + 10) + "px";
+    nextCanvas.style.top = canvasRect.top + "px";
+    nextCanvas.style.left = (canvasRect.right + 10) + "px";
     nextCanvas.style.width = (120 * scale) + "px";
     nextCanvas.style.height = (120 * scale) + "px";
 
@@ -231,8 +232,8 @@ function adjustLayout() {
     mobileControls.style.position = 'absolute';
     mobileControls.style.flexDirection = 'column';
     mobileControls.style.alignItems = 'center';
-    mobileControls.style.left = (canvas.offsetLeft + canvas.offsetWidth/2) + "px";
-    mobileControls.style.top = (canvas.offsetTop + canvas.offsetHeight + 10) + "px"; // 캔버스 바로 아래
+    mobileControls.style.left = (canvasRect.left + canvasRect.width / 2) + "px";
+    mobileControls.style.top = (canvasRect.bottom + 10) + "px"; // 캔버스 바로 아래
     mobileControls.style.transform = 'translateX(-50%)';
 
     // 버튼 크기
@@ -243,13 +244,15 @@ function adjustLayout() {
         btn.style.fontSize = "28px";
         btn.style.margin = "3px";
     });
+
+    // 게임 시작 버튼 위치
     positionRestartButton();
 }
 
 // 게임 시작 버튼 위치: 캔버스 중앙
 function positionRestartButton() {
     const restartBtn = document.getElementById('restartBtn');
-    const canvasRect = canvas.getBoundingClientRect(); // canvas 위치와 크기를 정확히 잡음
+    const canvasRect = canvas.getBoundingClientRect();
 
     restartBtn.style.position = "absolute";
     restartBtn.style.left = (canvasRect.left + canvasRect.width / 2) + "px";
@@ -258,3 +261,8 @@ function positionRestartButton() {
     restartBtn.style.zIndex = 20;
     restartBtn.style.display = gameStarted ? 'none' : 'block';
 }
+
+// 초기와 리사이즈 시 적용
+window.addEventListener('load', adjustLayout);
+window.addEventListener('resize', adjustLayout);
+
