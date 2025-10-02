@@ -206,10 +206,8 @@ bindControl("rotateBtn", () => {
 });
 
 // ====================== 반응형 캔버스 & 모바일 처리 ======================
-// ====================== 반응형 캔버스 & 모바일 처리 ======================
 function adjustLayout() {
     const isMobile = window.innerWidth <= 768;
-    const mobileControls = document.getElementById('mobile-controls');
 
     // 캔버스 최대 너비
     const maxWidth = isMobile ? window.innerWidth * 0.9 : 400;
@@ -227,29 +225,27 @@ function adjustLayout() {
     nextCanvas.style.width = (120 * scale) + "px";
     nextCanvas.style.height = (120 * scale) + "px";
 
-// 모바일 버튼 위치: 캔버스 바로 아래 중앙, 가로 배치
-if(isMobile){
+ // 방향키 버튼: 캔버스 바로 아래 중앙
+    const mobileControls = document.getElementById('mobile-controls');
+    mobileControls.style.display = 'flex'; // PC/Mobile 모두 보이도록
     mobileControls.style.position = 'absolute';
-mobileControls.style.left = (canvas.offsetLeft + canvas.offsetWidth/2) + 'px';
-mobileControls.style.top = (canvas.offsetTop + canvas.offsetHeight + 10) + 'px'; // 캔버스 바로 아래
-mobileControls.style.transform = 'translateX(-50%)';
-mobileControls.style.display = 'flex';
-mobileControls.style.flexDirection = 'row'; // 가로 배치
-mobileControls.style.gap = '12px';
+    mobileControls.style.top = (canvas.offsetTop + ROW * SQ * scale + 20) + "px";
+    mobileControls.style.left = '50%';
+    mobileControls.style.transform = 'translateX(-50%)';
+    mobileControls.style.gap = '15px';
 
     // 버튼 크기
     const btns = mobileControls.querySelectorAll('button');
     btns.forEach(btn => {
-        btn.style.width = Math.min(80, window.innerWidth*0.15) + "px";
-        btn.style.height = Math.min(80, window.innerWidth*0.15) + "px";
-        btn.style.fontSize = "28px";
-        btn.style.margin = "3px";
+        btn.style.width = Math.min(80, window.innerWidth * 0.15) + "px";
+        btn.style.height = Math.min(80, window.innerWidth * 0.15) + "px";
+        btn.style.fontSize = "32px";
     });
 }
 
     // 게임 시작 버튼 위치
     positionRestartButton();
-}
+
 
 // 게임 시작 버튼 위치: 캔버스 중앙
 function positionRestartButton() {
