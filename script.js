@@ -229,7 +229,7 @@ function adjustLayout() {
     const mobileControls = document.getElementById('mobile-controls');
     mobileControls.style.display = 'flex'; // PC/Mobile 모두 보이도록
     mobileControls.style.position = 'absolute';
-    mobileControls.style.top = (canvas.offsetTop + ROW * SQ * scale + 20) + "px";
+    mobileControls.style.top = (canvas.offsetTop + ROW * SQ * scale + 70) + "px";
     mobileControls.style.left = '50%';
     mobileControls.style.transform = 'translateX(-50%)';
     mobileControls.style.gap = '15px';
