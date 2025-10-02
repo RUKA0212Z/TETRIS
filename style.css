@@ -54,28 +54,21 @@ h1 {
 
 /* 모바일 컨트롤 (기본 숨김, 모바일에서만 표시) */
 #mobile-controls {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;   /* 기본 숨김 */
-    flex-wrap: wrap; /* 작은 화면에서 버튼 줄바꿈 허용 */
-    justify-content: center;
-    gap: 15px;
-    z-index: 10;
-}
-
-/* 모바일 조작 버튼 */
-#mobile-controls {
-    position: absolute; /* fixed -> absolute */
-    bottom: 0;           /* 캔버스 바로 아래 */
+    position: absolute;
+    bottom: 10px; /* 캔버스 바로 아래 */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px; /* 회전 버튼과 방향 버튼 사이 */
+    flex-direction: row; /* 가로 배치 */
+    gap: 12px;
     z-index: 10;
+}
+
+/* PC에서는 숨김 */
+@media (min-width: 769px) {
+    #mobile-controls {
+        display: none;
+    }
 }
 
 #mobile-controls button {
