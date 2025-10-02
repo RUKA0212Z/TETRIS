@@ -266,3 +266,4 @@ function positionRestartButton() {
 window.addEventListener('load', adjustLayout);
 window.addEventListener('resize', adjustLayout);
 
+// 냐
